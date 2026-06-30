@@ -1,1 +1,53 @@
 
+{% extends 'base.html' %}
+
+{% block title %}{{ company.name }} | {{ company.slogan }}{% endblock %}
+
+{% block content %}
+<!-- 首页 Hero -->
+<section class="hero">
+  <h1>{{ company.slogan }}</h1>
+  <p>{{ company.description }}</p>
+  <a href="{{ url_for('contact') }}" class="btn btn-primary">立即咨询</a>
+</section>
+
+<!-- 产品概览 -->
+<section class="section" id="products">
+  <div class="container">
+    <h2 class="section-title">产品与服务</h2>
+    <p class="section-sub">覆盖全场景的智能产品体系</p>
+    <div class="grid-4">
+      {% for product in products %}
+      <div class="card">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.desc }}</p>
+        <div class="tags">
+          {% for tag in product.tags %}
+          <span>{{ tag }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- 解决方案概览 -->
+<section class="section" id="solutions">
+  <div class="container">
+    <h2 class="section-title">解决方案</h2>
+    <p class="section-sub">深耕行业，场景落地</p>
+    <div class="grid-2">
+      {% for sol in solutions %}
+      <div class="sol-card">
+        <h3>{{ sol.name }}</h3>
+        <p>{{ sol.desc }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align:center; margin-top:32px;">
+      <a href="{{ url_for('solutions') }}" class="btn btn-primary">查看全部方案</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
